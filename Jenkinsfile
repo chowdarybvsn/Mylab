@@ -26,7 +26,7 @@ pipeline {
                 }
             }
          }
-        stage('print Env'){
+        stage('print Env') {
             steps {
                 echo "Artifact_ID is '${ArtifactId}'"
                 echo "version is '${Version}'"
@@ -35,19 +35,23 @@ pipeline {
              }
         }
 
-        stage('Artifact uploader'){
+        stage('Artifact uploader') {
             steps {
-                script{
-                    def NexusRepo = Version.endswith ("SNAPSHOT") ? "mylab-snapshot" : "mylab-release"
+                script {
+                    def NexusRepo = Version.endsWith("SNAPSHOT") ? "mylab-snapshot" : "mylab-release"
 
-                    nexusArtifactUploader artifacts: [[artifactId: "${ArtifactId}",
+                    nexusArtifactUploader artifacts:
+                    [[artifactId: "${ArtifactId}",
                     classifier: '', 
-                    file: "target/${ArtifactId}-${Version}.war", type: 'war']], 
+                    file: "target/${ArtifactId}-${Version}.war",
+                    type: 'war']], 
                     credentialsId: 'nexus', 
-                    groupId: "${GroupId}", 
+                    groupId: "${GroupId}",
                     nexusUrl: 'localhost:8081', 
-                    nexusVersion: 'nexus3', protocol: 'http', 
-                    repository: "${NexusRepo}", version: "${Version}"
+                    nexusVersion: 'nexus3',
+                    protocol: 'http', 
+                    repository: "${NexusRepo}",
+                    version: "${Version}"
                 }
             }
          }
