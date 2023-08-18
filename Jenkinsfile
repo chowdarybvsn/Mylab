@@ -20,7 +20,7 @@ pipeline {
          }
          stage('build'){
              steps {
-                mvnBuild()
+                sh 'mvn clean install package'
              }
          }
          stage ('static code analysis'){
