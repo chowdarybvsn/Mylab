@@ -1,4 +1,4 @@
-@Library( "my_sh_lib") _
+@Library("my_sh_lib") _
 pipeline {
     agent any 
     environment {
@@ -15,7 +15,7 @@ pipeline {
          }
          stage('build'){
              steps {
-                  sh 'mvn clean install package'
+                sh 'mvn clean install package'
              }
          }
          stage ('static code analysis'){
