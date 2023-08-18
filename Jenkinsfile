@@ -1,4 +1,4 @@
-@Library("my_sh_lib") _
+@Library("my-sh-lib") _
 pipeline {
     agent any 
     environment {
@@ -8,12 +8,12 @@ pipeline {
           GroupId = readMavenPom().getGroupId()
     }
     stages {
-         stage('checkout') {
+         stage('checkout'){
               steps {
                 git branch: "master", url: "https://github.com/chowdarybvsn/Mylab.git"
               }
          }
-         stage ('hello world') {
+         stage('hello world'){
             steps {
                 helloWorld()
             }
