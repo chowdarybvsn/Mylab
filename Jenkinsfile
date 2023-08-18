@@ -10,23 +10,19 @@ pipeline {
     stages {
          stage('checkout'){
               steps {
-                checkout()
+                git branch: "master", url: "https://github.com/chowdarybvsn/Mylab.git"
               }
-         }
-         stage('hello world'){
-            steps {
-                helloWorld()
-            }
          }
          stage('build'){
              steps {
-                sh 'mvn clean install package'
+                mvnBuild()
              }
          }
          stage ('static code analysis'){
             steps {
                 script{
-                    scA()
+                    withSonarQubeEnv('Mysonar'){
+                     sh 'mvn sonar:sonar'
                   }
                 }
             }

@@ -1,4 +1,0 @@
-def call() {
-    withSonarQubeEnv(credentialsId: 'sonartoken') {
-            sh 'mvn sonar:sonar'
-}
