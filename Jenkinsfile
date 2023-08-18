@@ -1,3 +1,4 @@
+@Library ("my_sh_lib") _
 pipeline {
     agent any 
     environment {
@@ -11,6 +12,11 @@ pipeline {
               steps {
                 git branch: "master", url: "https://github.com/chowdarybvsn/Mylab.git"
               }
+         }
+         stage ('hello world') {
+            steps {
+                helloWorld()
+            }
          }
          stage('build'){
              steps {
