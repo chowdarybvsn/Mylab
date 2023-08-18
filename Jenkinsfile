@@ -1,6 +1,6 @@
 pipeline {
     agent any 
-    environment{
+    environment {
           ArtifactId = readMavenPom().getArtifactId()
           Version = readMavenPom().getVersion()
           Name = readMavenPom().getName()
@@ -35,10 +35,10 @@ pipeline {
              }
         }
 
-         /*stage('Artifact uploader'){
+        stage('Artifact uploader'){
             steps {
                 script{
-                     def NexusRepo = Version.endswith ("SNAPSHOT") ? "mylab-snapshot" : "mylab-release"
+                    def NexusRepo = Version.endswith ("SNAPSHOT") ? "mylab-snapshot" : "mylab-release"
 
                     nexusArtifactUploader artifacts: [[artifactId: "${ArtifactId}",
                     classifier: '', 
@@ -50,6 +50,6 @@ pipeline {
                     repository: "${NexusRepo}", version: "${Version}"
                 }
             }
-         }*/
+         }
     }
 }
