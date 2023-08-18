@@ -1,10 +1,10 @@
 pipeline {
     agent any 
     environment{
-          ArtifactId = readMavenPom().getartifactId()
-          Version = readMavenPom().getversion()
-          Name = readMavenPom().getname()
-          GroupId = readMavenPom().getgroupId()
+          ArtifactId = readMavenPom().getArtifactId()
+          Version = readMavenPom().getVersion()
+          Name = readMavenPom().getName()
+          GroupId = readMavenPom().getGroupId()
     }
     stages {
          stage('checkout') {
@@ -27,7 +27,7 @@ pipeline {
             }
          }
         stage('print Env'){
-            steps{
+            steps {
                 echo "Artifact_ID is '${ArtifactId}'"
                 echo "version is '${Version}'"
                 echo "Name is '${Name}'"
