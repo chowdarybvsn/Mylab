@@ -1,5 +1,11 @@
 pipeline {
     agent any 
+    environment{
+          ArtifactId = readMavenPom().getartifactId()
+          Version = readMavenPom().getversion()
+          Name = readMavenPom().getname()
+          GroupId = readMavenPom().getgroupId()
+    }
     stages {
          stage('checkout') {
               steps {
@@ -20,12 +26,30 @@ pipeline {
                 }
             }
          }
-         stage('Artifact uploader'){
+        stage('print Env'){
+            steps{
+                echo "Artifact_ID is '${ArtifactId}'"
+                echo "version is '${Version}'"
+                echo "Name is '${Name}'"
+                echo "GroupId is '${GroupId}'"         
+             }
+        }
+
+         /*stage('Artifact uploader'){
             steps {
                 script{
-                    nexusArtifactUploader artifacts: [[artifactId: 'MyDevOpsLab', classifier: '', file: 'target/MyDevOpsLab-0.0.8-SNAPSHOT.war', type: 'war']], credentialsId: 'nexus', groupId: 'com.mydevopslab', nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'mylab-snapshot/', version: '0.0.8-SNAPSHOT'
+                     def NexusRepo = Version.endswith ("SNAPSHOT") ? "mylab-snapshot" : "mylab-release"
+
+                    nexusArtifactUploader artifacts: [[artifactId: "${ArtifactId}",
+                    classifier: '', 
+                    file: "target/${ArtifactId}-${Version}.war", type: 'war']], 
+                    credentialsId: 'nexus', 
+                    groupId: "${GroupId}", 
+                    nexusUrl: 'localhost:8081', 
+                    nexusVersion: 'nexus3', protocol: 'http', 
+                    repository: "${NexusRepo}", version: "${Version}"
                 }
             }
-         }
+         }*/
     }
 }
