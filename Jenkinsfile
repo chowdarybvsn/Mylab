@@ -38,7 +38,7 @@ pipeline {
         stage('Artifact uploader') {
             steps {
                 script {
-                    def NexusRepo = Version.endswith("SNAPSHOT") ? "mylab-snapshot" : "mylab-release"
+                    def NexusRepo = Version.endsWith("SNAPSHOT") ? "mylab-snapshot" : "mylab-release"
 
                     nexusArtifactUploader artifacts:
                     [[artifactId: "${ArtifactId}",
