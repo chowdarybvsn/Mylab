@@ -10,7 +10,7 @@ pipeline {
     stages {
          stage('checkout'){
               steps {
-                checkout()
+                git branch: "master", url: "https://github.com/chowdarybvsn/Mylab.git"
               }
          }
          stage('hello world'){
