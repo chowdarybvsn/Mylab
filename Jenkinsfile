@@ -30,7 +30,6 @@ pipeline {
                   }
                 }
             }
-         }
         stage('print Env') {
             steps {
                 echo "Artifact_ID is '${ArtifactId}'"
