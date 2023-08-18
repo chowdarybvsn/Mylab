@@ -1,4 +1,4 @@
-@Library ("my_sh_lib") _
+@Library("my_sh_lib") _
 pipeline {
     agent any 
     environment {
