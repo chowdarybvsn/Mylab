@@ -26,12 +26,13 @@ pipeline {
                   }
                 }
             }
+         }   
         stage('print Env') {
             steps {
                 echo "Artifact_ID is '${ArtifactId}'"
                 echo "version is '${Version}'"
                 echo "Name is '${Name}'"
-                echo "GroupId is '${GroupId}'"         
+                echo "GroupId is '${GroupId}'"     
              }
         }
 
