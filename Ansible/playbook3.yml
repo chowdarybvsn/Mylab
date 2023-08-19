@@ -1,0 +1,6 @@
+---
+- name: ""
+  hosts: all
+  become: yes
+  tasks:
+     - name: ""
